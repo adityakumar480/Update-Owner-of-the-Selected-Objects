@@ -1,0 +1,27 @@
+.header {
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 1.9px;
+}
+
+.combobox {
+	margin-top : -19px;
+	width: 170px;
+}
+
+.from-user_combobox {
+	padding-left: 100px;
+}
+
+.to-user_combobox {
+	padding-right: 100px;
+}
+
+.datatable {
+	border: 1px solid rgb(185, 185, 185);
+}
+
+.slds-inline_flex {
+    display: inline-flex;
+    align-items: center;
+}

@@ -1,0 +1,111 @@
+<template>
+	<article class="slds-card">
+	  <div class="slds-card__header slds-grid">
+		<header class="slds-media slds-media_center slds-has-flexi-truncate">
+		  <div class="slds-media__figure slds-icon_container">
+			<lightning-icon icon-name="standard:record_update" title="Update"></lightning-icon>
+		  </div>
+  
+		  <div class="slds-media__body header">Re-Assign Owner</div>
+  
+		  <span class="slds-inline_flex">
+			<lightning-combobox
+			  class="combobox"
+			  name="sObjectSelection"
+			  placeholder="Select an Object..."
+			  options={sObjectOptions}
+			  onchange={handleElementChange}
+			  value={selectedObject}
+			  disabled={isDisableObjectCombobox}
+			></lightning-combobox>
+  
+			<template if:true={isDisableObjectCombobox}>
+			  <div class="slds-inline_flex">
+				<lightning-button
+				  class="slds-m-left_small"
+				  label="Update"
+				  icon-name="utility:record_update"
+				  icon-position="right"
+				  variant="brand"
+				  title="Update Owner"
+				  alternative-text="Update"
+				  onclick={handleOwnerUpdation}
+				  disabled={isDisableUpdateButton}
+				></lightning-button>
+				<lightning-button-icon
+				  class="slds-m-left_small"
+				  icon-name="utility:sync"
+				  variant="brand"
+				  title="Reset Everything"
+				  alternative-text="Reset"
+				  onclick={handleRefreshComponent}
+				></lightning-button-icon>
+			  </div>
+			</template>
+		  </span>
+		</header>
+	  </div>
+  
+	  <div class="slds-card__body slds-border_top">
+		<lightning-spinner lwc:if={isDisplaySpinner} alternative-text="Loading" size="medium"></lightning-spinner>
+  
+		<template if:true={isDisableObjectCombobox}>
+		  <div class="slds-p-horizontal_medium slds-p-vertical_small">
+			<div class="slds-grid slds-wrap">
+			  <div class="slds-col slds-size_5-of-12">
+				<lightning-combobox
+				  class="from-user_combobox slds-m-top_xxx-small fromUserSelection"
+				  name="fromUserSelection"
+				  value={selectedFromUserId}
+				  label="From User?"
+				  placeholder="Select a User..."
+				  options={users}
+				  onchange={handleElementChange}
+				></lightning-combobox>
+			  </div>
+			  <div class="slds-col slds-size_2-of-12"></div>
+			  <div class="slds-col slds-size_5-of-12">
+				<lightning-combobox
+				  class="to-user_combobox slds-m-top_xxx-small toUserSelection"
+				  name="toUserSelection"
+				  value={selectedToUserId}
+				  label="To User?"
+				  placeholder="Select a User..."
+				  options={users}
+				  onchange={handleElementChange}
+				  disabled={isDisableToUserCombobox}
+				></lightning-combobox>
+			  </div>
+			</div>
+  
+			<template if:true={isDisplayObjectRecords}>
+			  <div class="datatable slds-m-top_small">
+				<lightning-datatable
+				  key-field="id"
+				  data={sObjectRecords}
+				  columns={columns}
+				  onrowselection={handleRowSelection}
+				  sorted-by={sortedBy}
+				  sorted-direction={sortedDirection}
+				  onsort={handleOnSort}
+				  max-row-selection="2"
+				  class="slds-m-top_small"
+				></lightning-datatable>
+			  </div>
+			</template>
+			<template if:false={isDisplayObjectRecords}>
+			  <div class="slds-illustration slds-illustration_medium slds-m-top_xx-large" aria-hidden="true">
+				<img src="/projRes/ui-home-private/emptyStates/noTasks.svg" class="slds-illustration__svg" alt="" />
+			  </div>
+			</template>
+		  </div>
+		</template>
+		<template if:false={isDisableObjectCombobox}>
+		  <div class="slds-illustration slds-illustration_large slds-m-top_small" aria-hidden="true">
+			<img src="/projRes/ui-home-private/emptyStates/noEvents.svg" class="slds-illustration__svg" alt="" />
+		  </div>
+		</template>
+	  </div>
+	</article>
+  </template>
+  
