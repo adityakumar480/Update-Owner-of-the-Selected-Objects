@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>We pass sObject Api name, its records, with some additional details.</description>
+    <isExposed>true</isExposed>
+    <lightningMessageFields>
+        <description>Object(anyobjectStandardas-well-asCustom)recordscollection.</description>
+        <fieldName>sObjectRecords</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <description>Objectnametoverifywhichobjectrecordiscoming.</description>
+        <fieldName>sObjectName</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <description>Usernamewhoserecordisupdatedtowhom.</description>
+        <fieldName>fromUserName</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <description>Usernamewhomtherecordisbeingupdated.</description>
+        <fieldName>toUserName</fieldName>
+    </lightningMessageFields>
+    <masterLabel>PassObjectRecordsInJSON</masterLabel>
+</LightningMessageChannel>
