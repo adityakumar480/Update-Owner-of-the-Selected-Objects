@@ -1,0 +1,32 @@
+<template>
+	<template if:true={isDisplayUpdatedSection}>
+	  <lightning-card>
+		<div class="header" slot="title">
+		  <lightning-icon class="slds-m-right_small" icon-name={cardIcon} alternative-text="standard-icon" title="standard-icon">
+		  </lightning-icon>
+		  <strong>{selectedObject}</strong>(s)
+		</div>
+  
+		<div class="slds-p-horizontal_small">
+		  <lightning-spinner lwc:if={isDisplaySpinner} alternative-text="Loading" size="medium"> </lightning-spinner>
+  
+		  <div class="slds-text-align_center">
+			<strong>{selectedFromUserName}</strong> records owner assigned to <strong>{selectedToUserName}</strong>.
+		  </div>
+  
+		  <div class="datatable slds-m-top_small">
+			<lightning-datatable
+			  key-field="Id"
+			  data={updatedObjectRecords}
+			  columns={columns}
+			  sorted-by={sortedBy}
+			  sorted-direction={sortedDirection}
+			  onsort={handleOnSort}
+			  hide-checkbox-column
+			></lightning-datatable>
+		  </div>
+		</div>
+	  </lightning-card>
+	</template>
+  </template>
+  
